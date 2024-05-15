@@ -41,6 +41,7 @@
 #' browser on the client so don't push it too high.
 #' @param sinksRight boolean. If \code{TRUE}, the last nodes are moved to the
 #' right border of the plot.
+#' @param NodeLayer the column name of the layer for x-position
 #'
 #' @examples
 #' \dontrun{
@@ -76,7 +77,7 @@ sankeyNetwork <- function(Links, Nodes, Source, Target, Value,
     NodeID, NodeGroup = NodeID, LinkGroup = NULL, units = "",
     colourScale = JS("d3.scaleOrdinal(d3.schemeCategory20);"), fontSize = 7,
     fontFamily = NULL, nodeWidth = 15, nodePadding = 10, margin = NULL,
-    height = NULL, width = NULL, iterations = 32, sinksRight = TRUE)
+    height = NULL, width = NULL, iterations = 32, sinksRight = TRUE, NodeLayer = NULL)
 {
     # Check if data is zero indexed
     check_zero(Links[, Source], Links[, Target])
@@ -120,6 +121,10 @@ sankeyNetwork <- function(Links, Nodes, Source, Target, Value,
     # add node group if specified
     if (is.character(NodeGroup)) {
         NodesDF$group <- Nodes[, NodeGroup]
+    }
+
+    if (is.character(NodeLayer)) {
+        NodesDF$layer = Nodes[, NodeLayer]
     }
 
     if (is.character(LinkGroup)) {
