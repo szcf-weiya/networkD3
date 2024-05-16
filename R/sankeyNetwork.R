@@ -143,14 +143,14 @@ sankeyNetwork <- function(Links, Nodes, Source, Target, Value,
     htmlwidgets::createWidget(name = "sankeyNetwork", x = list(links = LinksDF,
         nodes = NodesDF, options = options), width = width, height = height,
         htmlwidgets::sizingPolicy(padding = 10, browser.fill = TRUE),
-        package = "forknetworkD3")
+        package = "networkD3")
 }
 
 #' @rdname networkD3-shiny
 #' @export
 sankeyNetworkOutput <- function(outputId, width = "100%", height = "500px") {
     shinyWidgetOutput(outputId, "sankeyNetwork", width, height,
-        package = "forknetworkD3")
+        package = "networkD3")
 }
 
 #' @rdname networkD3-shiny
